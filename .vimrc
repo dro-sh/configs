@@ -18,15 +18,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'chriskempson/base16-vim' " pretty cool color scheme for vim and terminal
 
   Plug 'sheerun/vim-polyglot' " language packs
-  Plug 'leafgarland/typescript-vim' " vim parse ts as xml
+  Plug 'leafgarland/typescript-vim' " especially for typestript
+  Plug 'ianks/vim-tsx' " especially for typestript
+
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompliter
 
   Plug 'editorconfig/editorconfig-vim' " hook .editorconfig
 
   Plug 'itchyny/lightline.vim' " bottom line
+  Plug 'maximbaz/lightline-ale' " integration lightline and ale
 
   Plug 'w0rp/ale' " async lint engine
-
-  Plug 'maximbaz/lightline-ale' " integration lightline and ale
 
   Plug 'tpope/vim-eunuch' " add commands form unix (Go to https://github.com/tpope/vim-eunuch)
 
@@ -34,6 +36,12 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'scrooloose/nerdtree' " look file system in vim
   Plug 'xuyuanp/nerdtree-git-plugin' " git flags for nerdtree
+
+  " Requires prettier that installed globally (npm install -g prettier)
+  " use <Leader>p to apply prettier in opened file in buffer/tab
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'npm install',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
   Plug 'tpope/vim-fugitive' " git
 
@@ -80,7 +88,7 @@ set wrap " wrap lines
 let base16colorspace=256 " Access colors present in 256 colorspace
 
 " vim-fugitive (opens :Gdiff as vertical splits instead of horizontal)
-set diffopt+=vertical
+" set diffopt+=vertical
 
 " base16-shell (https://github.com/chriskempson/base16-shell)
 if filereadable(expand("~/.vimrc_background"))
@@ -148,13 +156,21 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ }
 
+let g:ale_fixers = {
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['prettier'],
+  \ 'scss': ['prettier'],
+  \ 'html': ['prettier']
+  \}
+
 highlight ALEWarning ctermbg=none cterm=underline
 highlight ALEError ctermbg=none cterm=underline
 
 "=======================
 " Completition
 "=======================
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm-config/.ycm_extra_conf_cpp.py' " ycm config for c++
+"let g:ycm_global_ycm_extra_conf = '~/.vim/ycm-config/.ycm_extra_conf_cpp.py' " ycm config for c++
+let g:coc_global_extensions = ['coc-tsserver']
 
 "=======================
 " Mapkeys
