@@ -2,17 +2,33 @@
 "        ligthline (linter and information (command, line, file ext))
 
 " automatically load vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+
+" automatically load vim-plug for nvim
+"if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+"   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall
+"    autocmd VimEnter * qall
+"endif
+
+let vim_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(vim_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.vim_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" MUST BE THERE (Requirments of vim-polyglot)
+let g:polyglot_disabled = ['typescript']
 
 "=======================
 " Plugins
 "=======================
 call plug#begin('~/.vim/plugged')
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '.install --all' } " install fzf
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } } " install fzf
   Plug 'junegunn/fzf.vim' " apply fzf
 
   Plug 'chriskempson/base16-vim' " pretty cool color scheme for vim and terminal
@@ -66,9 +82,9 @@ set listchars=trail:·,space:·,extends:#,nbsp:␣ " list of chars, that will be
 set relativenumber " use relative numbers at left
 set nu " use absolute numbers at current position
 set encoding=utf-8
-set ruler
-set title
-set formatoptions+=j
+set ruler " show cursor position always
+set title " change terminal title
+"set formatoptions+=j " do not know what it do
 
 "disable bells
 set noerrorbells
@@ -173,7 +189,6 @@ let g:lightline.component_type = {
 " Syntax highlighting
 "=======================
 syntax on
-let g:polyglot_disabled = ['typescript']
 
 " tsx
 hi tsxTypeBraces guifg=#999999
@@ -209,7 +224,7 @@ highlight ALEError ctermbg=none cterm=underline
 " Completition
 "=======================
 "let g:ycm_global_ycm_extra_conf = '~/.vim/ycm-config/.ycm_extra_conf_cpp.py' " ycm config for c++
-let g:coc_global_extensions = ['coc-tsserver']
+let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver', 'coc-go']
 
 " If prettier is in project
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')

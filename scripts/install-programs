@@ -1,0 +1,48 @@
+#!/bin/bash
+
+COLOR_WHITE='\033[0;37m'
+COLOR_B_PURPLE='\033[1;35m'
+COLOR_DEFAULT='\033[0m'
+
+function logger {
+    echo -e "${COLOR_B_PURPLE}[surge:program-install]:${COLOR_WHITE} $1${COLOR_DEFAULT}"
+}
+
+logger "Trying to install programs..."
+
+sudo apt install gnome-tweaks -y
+
+sudo apt install neovim -y
+sudo apt install fzf -y
+sudo apt install zsh -y
+
+# ubuntu doesn't have curl by default
+sudo apt install curl -y
+
+sudo apt install node -y
+sudo apt install npm -y
+
+if ! command -v yarn &> /dev/null; then
+    curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+fi
+
+if [ ! -d $HOME/.zprezto ]; then
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+fi
+
+if [ ! -d ~/.config/base16-shell ]; then
+    # Add to your rc file: export TERM=screen-256color
+    git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+fi
+
+if [ ! -f /usr/local/bin/pt ]; then
+    wget https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.2.0/pt_linux_amd64.tar.gz
+    tar xf pt_linux_amd64.tar.gz
+    cd pt_linux_amd64/
+    sudo mv pt /usr/local/bin
+    cd ..
+    rm -rf pt_linux_amd64/
+    rm -f pt_linux_amd64.tar.gz
+fi
+
+logger "Programs was installed"

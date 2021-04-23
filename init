@@ -1,0 +1,57 @@
+#!/bin/bash
+
+COLOR_WHITE='\033[0;37m'
+COLOR_B_PURPLE='\033[1;35m'
+COLOR_DEFAULT='\033[0m'
+
+function logger {
+    echo -e "${COLOR_B_PURPLE}[surge:program-install]:${COLOR_WHITE} $1${COLOR_DEFAULT}"
+}
+
+function usage {
+   logger "Usage:"
+   logger "    -p: install programs"
+   logger "    -s: setup shell"
+}
+
+install_programs=0
+setup_shell=0
+
+while getopts ":ps" opt; do
+    case "$opt" in
+    p) install_programs=1 ;;
+    s) setup_shell=1 ;;
+    esac
+done
+
+if [[ $install_programs -eq 0 && $setup_shell -eq 0 ]]; then
+    usage && exit 0
+fi
+
+logger "Initialize system (supported only Ubuntu 20.04)"
+
+if [ $install_programs -eq 1 ]; then
+    logger "Execute 'scripts/install-programs'"
+    chmod +x $(pwd)/scripts/install-programs
+    eval $(pwd)/scripts/install-programs
+fi
+
+if [ $setup_shell -eq 1 ]; then
+    logger "Execute 'scripts/setup-shell'"
+    chmod +x $(pwd)/scripts/setup-shell
+    eval $(pwd)/scripts/setup-shell
+fi
+
+shell=$SHELL
+zsh_path=$(which zsh)
+
+if [ $shell != $zsh_path ]; then
+    read -p "Change shell to zsh? [y|N]" ans
+
+    if [ $ans == y ]; then
+        logger "Try to change default shell..."
+        chsh -s $(which zsh)
+    fi
+fi
+
+logger "System was configured. Now setup programs which specified in docs"

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+COLOR_WHITE='\033[0;37m'
+COLOR_B_PURPLE='\033[1;35m'
+COLOR_DEFAULT='\033[0m'
+
+function logger {
+    echo -e "${COLOR_B_PURPLE}[surge:dotfiles]:${COLOR_WHITE} $1${COLOR_DEFAULT}"
+}
+
+logger "Setup shell software.\n Creating symlinks for vim, zsh and git..."
+
+mkdir -p $HOME/.config/nvim
+
+ln -sf $(pwd)/src/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -sf $(pwd)/src/nvim/init.vim $HOME/.vimrc
+
+ln -sf $(pwd)/src/bashrc $HOME/.bashrc
+ln -sf $(pwd)/src/gitconfig $HOME/.gitconfig
+ln -sf $(pwd)/src/zpreztorc $HOME/.zpreztorc
+ln -sf $(pwd)/src/vimrc_background $HOME/.vimrc_background
+ln -sf $(pwd)/src/zshrc $HOME/.zshrc
+
+logger "Create undo-dir for vim..."
+mkdir -p $HOME/.vim/undo-dir
+
+logger "Installing vim-plug and do PlugInstall..."
+vim
+
+DEFAULT_THEME=base16_tomorrow-night
+logger "Try to set ${DEFAULT_THEME}"
+eval $DEFAULT_THEME
+
+logger "Shell has been configured"
