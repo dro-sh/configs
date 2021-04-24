@@ -28,7 +28,7 @@ let g:polyglot_disabled = ['typescript']
 " Plugins
 "=======================
 call plug#begin('~/.vim/plugged')
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } } " install fzf
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '~/.fzf/install --all' } " install fzf
   Plug 'junegunn/fzf.vim' " apply fzf
 
   Plug 'chriskempson/base16-vim' " pretty cool color scheme for vim and terminal
@@ -271,6 +271,7 @@ let g:fzf_action = {
 
 
 " copy to clickboard buffer
+set clipboard=unnamedplus " enable coping (nvim)
 vnoremap <C-c> "*y
 
 " change horizontal split

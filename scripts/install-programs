@@ -13,7 +13,6 @@ logger "Trying to install programs..."
 sudo apt install gnome-tweaks -y
 
 sudo apt install neovim -y
-sudo apt install fzf -y
 sudo apt install zsh -y
 
 # ubuntu doesn't have curl by default
@@ -22,6 +21,9 @@ sudo apt install curl -y
 sudo apt install node -y
 sudo apt install npm -y
 
+sudo apt install terminator -y
+
+# need for coc-vim
 if ! command -v yarn &> /dev/null; then
     curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 fi

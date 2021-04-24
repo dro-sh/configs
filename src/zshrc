@@ -13,10 +13,14 @@ fi
 export FZF_DEFAULT_COMMAND='pt --files-with-matches --smart-case --hidden ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# brew fzf
+# bin via vim-plug
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# apt-get fzf
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# go
+[[ -d /opt/go/bin/ ]] && export PATH="$PATH:/opt/go/bin"
 
 # disable autocorrect
 unsetopt correct_all
@@ -30,5 +34,3 @@ unsetopt correct_all
 #if command -v pyenv 1>/dev/null 2>&1; then
 #  eval "$(pyenv init -)"
 #fi
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
