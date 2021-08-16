@@ -20,7 +20,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # go
-if [[ -d /opt/go/bin/ ]]; then
+if [[ -d /usr/local/go/bin/ ]]; then
     export PATH="$PATH:/usr/local/go/bin"
 fi
 

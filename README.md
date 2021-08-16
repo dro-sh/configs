@@ -36,16 +36,27 @@ chmod +x init
 Choose your OS type
 * [Ubuntu](./docs/ubuntu/setup.md)
 
-### Languages installation
+### Languages and databases installation
 
 #### Go
 
-* Linux Golang v1.16.13
+* Linux Golang v1.16.7
 
 ```bash
-wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-sudo tar -C /opt -xzf go1.16.3.linux-amd64.tar.gz
-rm -f go1.16.3.linux-amd64.tar.gz
+wget https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.7.linux-amd64.tar.gz
+rm -f go1.16.7.linux-amd64.tar.gz
 ```
 
 After installation **add to your rc file** `export PATH=$PATH:/opt/go/bin`
+
+#### PostgreSQL
+
+* Linux Latest PostgreSQL
+
+```bash
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql
+```

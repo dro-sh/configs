@@ -31,12 +31,18 @@
     * Terminal Titlebar: setup your colors
     * Hide size from title: **true**
 2. Profiles
-    * Cursor
+    * (General) Cursor
         * Shape: **I-Beam**
         * Blink: **false**
+    * (General) Show titlebar: **false**
 3. Keybindings
     * close_term: **Alt+w**
     * close_window: **Alt+q**
     * new_tab: **Alt+t**
     * next_tab: **Alt+]**
     * prev_tab: **Alt+[**
+
+#### PostgreSQL
+
+1. Switch to user **postgres**: `sudo -i -u postgres`
+2. `createuser --interactive` input name, allow **superuser**
