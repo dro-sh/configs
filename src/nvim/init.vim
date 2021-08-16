@@ -22,7 +22,7 @@ if empty(glob(vim_dir . '/autoload/plug.vim'))
 endif
 
 " MUST BE THERE (Requirments of vim-polyglot)
-let g:polyglot_disabled = ['typescript']
+let g:polyglot_disabled = ['typescript', 'golang']
 
 "=======================
 " Plugins
@@ -30,6 +30,8 @@ let g:polyglot_disabled = ['typescript']
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '~/.fzf/install --all' } " install fzf
   Plug 'junegunn/fzf.vim' " apply fzf
+
+  Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 
   Plug 'chriskempson/base16-vim' " pretty cool color scheme for vim and terminal
 
@@ -63,6 +65,8 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-fugitive' " git
 
+  Plug 'tpope/vim-commentary' "comment lines
+
   " CompleteMe/install.py --clang-completer --ts-completer
   "Plug 'ycm-core/YouCompleteMe', { 'do': '~/.install.py --clang-completer' }
   "Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' } " generator config for YCM
@@ -73,12 +77,13 @@ call plug#end()
 " General
 "=======================
 set noswapfile " don't create swap files
-set expandtab " tab -> space
+"set expandtab " tab -> space
 set tabstop=4
 set shiftwidth=4
 set shiftround " round indention to n*spaces
+set smarttab
 set list " use list of chars below
-set listchars=trail:·,space:·,extends:#,nbsp:␣ " list of chars, that will be replaced
+set listchars=trail:·,space:·,extends:#,nbsp:␣,tab:·· " list of chars, that will be replaced
 set relativenumber " use relative numbers at left
 set nu " use absolute numbers at current position
 set encoding=utf-8
@@ -202,6 +207,16 @@ hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
 hi WebBrowser ctermfg=204 guifg=#56B6C2
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
+" vim-go
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
 "=======================
 " Linter
 "=======================
@@ -219,6 +234,11 @@ let g:ale_fixers = {
 
 highlight ALEWarning ctermbg=none cterm=underline
 highlight ALEError ctermbg=none cterm=underline
+
+" vim-go
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+let g:go_jump_to_error = 0
 
 "=======================
 " Completition
@@ -245,6 +265,13 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+" vim-go
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_def_mapping_enabled=0
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 0
 
 "=======================
 " Mapkeys
