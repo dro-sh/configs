@@ -10,7 +10,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # fzf
-export FZF_DEFAULT_COMMAND='pt --files-with-matches --smart-case --hidden ""'
+export FZF_DEFAULT_COMMAND='pt --files-with-matches --smart-case --ignore=.git --hidden ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # bin via vim-plug
@@ -20,7 +20,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # go
-[[ -d /opt/go/bin/ ]] && export PATH="$PATH:/opt/go/bin"
+if [[ -d /opt/go/bin/ ]]; then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
 
 # disable autocorrect
 unsetopt correct_all
