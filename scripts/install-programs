@@ -18,15 +18,13 @@ sudo apt install zsh -y
 # ubuntu doesn't have curl by default
 sudo apt install curl -y
 
-sudo apt install node -y
-sudo apt install npm -y
+# default node is 10.*
+# using snapd for upper version
+# it installs npm and yarn
+sudo apt install snapd -y
+sudo snap install node --channel=12/stable --classic
 
 sudo apt install terminator -y
-
-# need for coc-vim
-if ! command -v yarn &> /dev/null; then
-    curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-fi
 
 if [ ! -d $HOME/.zprezto ]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
