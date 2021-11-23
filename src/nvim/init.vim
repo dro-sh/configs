@@ -1,6 +1,3 @@
-" To do: ale (watch docs)
-"        ligthline (linter and information (command, line, file ext))
-
 " automatically load vim-plug
 "if empty(glob('~/.vim/autoload/plug.vim'))
 "  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -66,6 +63,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive' " git
 
   Plug 'tpope/vim-commentary' "comment lines
+
+  " Requires nodejs and yarn
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
   " CompleteMe/install.py --clang-completer --ts-completer
   "Plug 'ycm-core/YouCompleteMe', { 'do': '~/.install.py --clang-completer' }
@@ -244,7 +244,7 @@ let g:go_jump_to_error = 0
 " Completition
 "=======================
 "let g:ycm_global_ycm_extra_conf = '~/.vim/ycm-config/.ycm_extra_conf_cpp.py' " ycm config for c++
-let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver', 'coc-go']
+let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver' ]
 
 " If prettier is in project
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
