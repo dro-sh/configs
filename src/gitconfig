@@ -1,3 +1,9 @@
 [user]
 	email = drozhzhin200@yandex.ru
-	name = Serfi7
+	name = dro-sh
+[core]
+    editor = vim
+[color]
+    ui = true
+[diff]
+    tool = vimdiff
