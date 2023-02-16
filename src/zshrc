@@ -1,8 +1,8 @@
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+# BASE16_SHELL="$HOME/.config/base16-shell/"
+# [ -n "$PS1" ] && \
+#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -10,12 +10,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # fzf
-export FZF_DEFAULT_COMMAND='pt --files-with-matches --smart-case --ignore=.git --hidden ""'
+export FZF_DEFAULT_COMMAND='fd --hidden --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 alias vim="nvim"
 
-# bin via vim-plug
+# bin via Packer
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # disable autocorrect
