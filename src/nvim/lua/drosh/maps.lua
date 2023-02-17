@@ -22,10 +22,10 @@ keymap.set("n", "<leader>rh", ":nohl<CR>", { silent = true }) -- remove search h
 
 keymap.set("n", "<leader>tc", ":tabclose<CR>") -- close current tab
 
-keymap.set("n", "<Right>", "<C-w>l", {noremap = true})
-keymap.set("n", "<Left>", "<C-w>h", {noremap = true})
-keymap.set("n", "<Up>", "<C-w>k", {noremap = true})
-keymap.set("n", "<Down>", "<C-w>j", {noremap = true})
+keymap.set("n", "<Right>", "<C-w>l", { noremap = true })
+keymap.set("n", "<Left>", "<C-w>h", { noremap = true })
+keymap.set("n", "<Up>", "<C-w>k", { noremap = true })
+keymap.set("n", "<Down>", "<C-w>j", { noremap = true })
 -- keymap.set("", "<C-j>", "<C-w>j", {noremap = true})
 -- keymap.set("", "<C-k>", "<C-w>k", {noremap = true})
 
@@ -54,7 +54,11 @@ keymap.set("v", "<C-c>", '"*y') -- copy to clipboard
 keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { silent = true, noremap = true }) -- Open/close Tree
 keymap.set("n", "<leader>n", ":NvimTreeFocus<CR>", { silent = true, noremap = true }) -- Open Tree for current file
 
-keymap.set("n", "<C-t>", ":FzfLua files<CR>", {silent = true})
+keymap.set("n", "<C-t>", ":FzfLua files<CR>", { silent = true }) -- Open fuzzy search for files
+keymap.set("n", "<S-t>", ":FzfLua git_status<CR>", { silent = true }) -- Open fuzzy search for files
 
-keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>")
-keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>")
+-- switch between tabs
+keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>") -- next tab
+keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>") -- prev tab
+
+-- for git works see nvim/after/plugins/gitsigns.rc.lua
