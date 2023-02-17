@@ -215,7 +215,7 @@ let g:coc_global_extensions = ['coc-tsserver', 'coc-json']
 let mapleader = ","
 
 " Keymap Coc
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>ac  <Plug>(coc-codeaction-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -276,6 +276,8 @@ nmap _ <C-w>-
 
 " switch NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+imap <C-j> <C-p>
 
 " open NERDTree on current file on CWD
 map <Leader>n :NERDTreeFind<CR>
