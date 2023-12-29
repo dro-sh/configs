@@ -123,6 +123,8 @@ return packer.startup({
 
 		use("ethanholz/nvim-lastplace") -- restore last position
 
+		-- use("olexsmir/gopher.nvim") -- go go go
+
 		if packer_bootstrap then
 			require("packer").sync()
 		end

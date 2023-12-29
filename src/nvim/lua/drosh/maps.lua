@@ -36,7 +36,7 @@ keymap.set("o", "k", "k")
 keymap.set("n", "<S-j>", ":m .+1<CR>==") -- move current line upper
 keymap.set("n", "<S-k>", ":m .-2<CR>==") -- move current line lower
 keymap.set("v", "<S-j>", ":m '>+1<CR>gv=gv") -- move current selection upper
-keymap.set("v", "<S-k>", ":m '>+1<CR>gv=gv") -- move current selection lower
+keymap.set("v", "<S-k>", ":m '<-2<CR>gv=gv") -- move current selection lower
 
 -- change horizontal split width (!!! think about)
 keymap.set("n", ">", "<C-w>>") -- decrease
@@ -52,7 +52,7 @@ keymap.set("v", "<C-c>", '"*y') -- copy to clipboard
 -- ======================================
 
 keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { silent = true, noremap = true }) -- Open/close Tree
-keymap.set("n", "<leader>n", ":NvimTreeFocus<CR>", { silent = true, noremap = true }) -- Open Tree for current file
+keymap.set("n", "<leader>n", ":NvimTreeFindFileToggle<CR>", { silent = true, noremap = true }) -- Open Tree for current file
 
 keymap.set("n", "<C-t>", ":FzfLua files<CR>", { silent = true }) -- Open fuzzy search for files
 keymap.set("n", "<S-t>", ":FzfLua git_status<CR>", { silent = true }) -- Open fuzzy search for files

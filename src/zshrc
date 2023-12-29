@@ -44,3 +44,13 @@ export PATH="/Users/drosh/go/bin:$PATH"
 # dotnet
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/Users/drosh/yandex-cloud/path.bash.inc' ]; then source '/Users/drosh/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/Users/drosh/yandex-cloud/completion.zsh.inc' ]; then source '/Users/drosh/yandex-cloud/completion.zsh.inc'; fi
+
+alias ycs3="aws --endpoint-url=https://storage.yandexcloud.net s3"
+[[ "$PATH" == *"$HOME/bin:"* ]] || export PATH="$HOME/bin:$PATH"
+! { which werf | grep -qsE "^/Users/drosh/.trdl/"; } && [[ -x "$HOME/bin/trdl" ]] && source $("$HOME/bin/trdl" use werf "1.2" "stable")

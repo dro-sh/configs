@@ -16,6 +16,8 @@ if not typescript_setup then
 	return
 end
 
+local util = require("lspconfig/util")
+
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds only for when lsp server available
@@ -34,7 +36,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+	keymap.set("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
@@ -93,6 +95,24 @@ lspconfig["lua_ls"].setup({
 					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
+		},
+	},
+})
+
+-- иницализация gopls LSP для Go
+-- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-install
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	cmd = { "gopls", "serve" },
+	filetypes = { "go", "go.mod" },
+	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+				shadow = true,
+			},
+			staticcheck = true,
 		},
 	},
 })

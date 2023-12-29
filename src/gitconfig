@@ -1,9 +1,13 @@
 [user]
-	email = drozhzhin200@yandex.ru
-	name = dro-sh
+	; email = drozhzhin200@yandex.ru
+	; name = dro-sh
+    email = bwg.it009@gmail.com
+    name = jac778
 [core]
     editor = vim
 [color]
     ui = true
 [diff]
     tool = vimdiff
+[url "git@gitlab.axarea.ru:"]
+	insteadOf = https://gitlab.axarea.ru
