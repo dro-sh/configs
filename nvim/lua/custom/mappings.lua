@@ -3,6 +3,7 @@ local M = {}
 M.disabled = {
   n = {
     ["<leader>h"] = "", -- remove mapping to open new terminal
+    ["<leader>v"] = "", -- remove mapping to open new terminal
   },
 }
 

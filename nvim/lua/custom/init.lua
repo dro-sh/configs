@@ -1,10 +1,5 @@
 -- General vim overrides
 
--- see :help nvim-tree-netrw
--- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- map leader key
 vim.g.mapleader = ","
 
