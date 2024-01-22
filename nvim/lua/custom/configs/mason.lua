@@ -2,8 +2,11 @@ return {
   -- ensure these language parsers are installed
   ensure_installed = {
     -- go stuff
-    -- "golangci-lint",
     "gopls",
+    "golangci-lint",
+    "gofumpt",
+    "goimports-reviser",
+    "golines",
 
     -- lua stuff
     "lua-language-server",
@@ -14,6 +17,10 @@ return {
     "html-lsp",
     "typescript-language-server",
     "prettier",
+
+    -- yaml-development driven
+    "yaml-language-server",
+    "yamlfmt",
   },
   -- auto-install configured servers (with lspconfig)
   automatic_installation = true, -- not the same as ensure_installed

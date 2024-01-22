@@ -2,7 +2,6 @@
 local M = {}
 
 local commentHL = { fg = "#777777", bold = true, italic = true }
-local gitStagedNewHL = { fg = "#cdffbd" }
 
 M.ui = {
   theme = "tomorrow_night",
@@ -12,6 +11,7 @@ M.ui = {
   },
 
   hl_override = {
+    -- Comment highlight
     Comment = commentHL,
     ["@comment"] = commentHL,
 
@@ -20,12 +20,13 @@ M.ui = {
     NvimTreeGitDirty = { fg = "#fffcbd" },
     -- NvimTreeGitIgnored = { fg = "yellow" }, -- good default
     -- NvimTreeGitMerge = { fg = "yellow" }, -- do not used
-    NvimTreeGitNew = gitStagedNewHL,
+    NvimTreeGitNew = { fg = "#fffcbd" },
     NvimTreeGitRenamed = { fg = "#fffcbd" },
   },
 
   hl_add = {
-    NvimTreeGitStaged = gitStagedNewHL,
+    -- Only there staged HL could be changed
+    NvimTreeGitStaged = { fg = "#cbffbd" },
   },
 
   statusline = {

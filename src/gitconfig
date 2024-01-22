@@ -9,5 +9,5 @@
     ui = true
 [diff]
     tool = vimdiff
-[url "git@gitlab.axarea.ru:"]
-	insteadOf = https://gitlab.axarea.ru
+[url "ssh://git@gitlab.axarea.ru/"]
+	insteadOf = https://gitlab.axarea.ru/

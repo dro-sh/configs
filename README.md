@@ -4,8 +4,9 @@ My dotfiles for neovim.
 
 ## Needs
 
-- [x] Setup Neovim
+- [ ] Setup Neovim
 - [ ] Setup tmux
+- [ ] Increase new shell tab opening
 
 ## Prerequisite
 

@@ -1,7 +1,7 @@
 -- General vim overrides
 
--- map leader key
 vim.g.mapleader = ","
+vim.opt.scrolloff = 7 -- min lines to top/bottom on scrolling
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd [[
