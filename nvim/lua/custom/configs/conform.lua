@@ -4,7 +4,7 @@ require("conform").setup {
   lsp_fallback = true,
 
   formatters_by_ft = {
-    go = { "gofumpt", "goimports-reviser", "golines" },
+    go = { "gofumpt", "gci", "golines" },
 
     lua = { "stylua" },
 
@@ -23,8 +23,17 @@ require("conform").setup {
   },
 
   formatters = {
-    ["goimports-reviser"] = {
-      prepend_args = { "-company-prefixes", golangCompaniesNames },
+    gci = {
+      prepend_args = {
+        "-s",
+        "standard",
+        "-s",
+        "default",
+        "-s",
+        "prefix(gitlab.com/zhazhazha1,gitlab.axarea.ru/main)",
+        "-s",
+        "localmodule",
+      },
     },
     golines = {
       prepend_args = { "-m", "120" },
