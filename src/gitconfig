@@ -1,13 +1,11 @@
 [user]
-	; email = drozhzhin200@yandex.ru
-	; name = dro-sh
-    email = bwg.it009@gmail.com
-    name = jac778
+	  email = drozhzhin200@yandex.ru
+	  name = dro-sh
 [core]
     editor = vim
 [color]
     ui = true
 [diff]
     tool = vimdiff
-[url "ssh://git@gitlab.axarea.ru/"]
-	insteadOf = https://gitlab.axarea.ru/
+[includeif "gitdir:~/Projects/bwg/"]
+  path = ~/Projects/bwg/.gitconfig

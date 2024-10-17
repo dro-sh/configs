@@ -1,28 +1,21 @@
-# Base16 Shell
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         eval "$("$BASE16_SHELL/profile_helper.sh")"
-
+# fzf (fd install via brew)
+export FZF_DEFAULT_COMMAND='fd --hidden --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# fzf
-export FZF_DEFAULT_COMMAND='fd --hidden --type f'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# install via .pkg from https://github.com/Homebrew/brew/releases
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# install via brew
+eval "$(fzf --zsh)"
 
 alias vim="nvim"
 
-# bin via Packer
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # disable autocorrect
 unsetopt correct_all
-
-# yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -38,13 +31,6 @@ fi
 # go
 export PATH="/Users/drosh/go/bin:$PATH"
 
-# java
-# export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-
-# dotnet
-export DOTNET_ROOT=$HOME/dotnet
-export PATH=$PATH:$HOME/dotnet
-
 # The next line updates PATH for Yandex Cloud CLI.
 if [ -f '/Users/drosh/yandex-cloud/path.bash.inc' ]; then source '/Users/drosh/yandex-cloud/path.bash.inc'; fi
 
@@ -54,3 +40,31 @@ if [ -f '/Users/drosh/yandex-cloud/completion.zsh.inc' ]; then source '/Users/dr
 alias ycs3="aws --endpoint-url=https://storage.yandexcloud.net s3"
 [[ "$PATH" == *"$HOME/bin:"* ]] || export PATH="$HOME/bin:$PATH"
 ! { which werf | grep -qsE "^/Users/drosh/.trdl/"; } && [[ -x "$HOME/bin/trdl" ]] && source $("$HOME/bin/trdl" use werf "1.2" "stable")
+
+# kubectl krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# psql
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/drosh/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/drosh/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/drosh/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/drosh/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/Users/drosh/miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/Users/drosh/miniforge3/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

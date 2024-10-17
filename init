@@ -11,7 +11,7 @@ function logger {
 logger "Creating symlinks for vim, zsh and git..."
 
 # mkdir -p $HOME/.config/nvim
-ln -sf $(pwd)/src/nvim $HOME/.config
+ln -sf $(pwd)/nvim $HOME/.config
 
 ln -sf $(pwd)/src/bashrc $HOME/.bashrc
 ln -sf $(pwd)/src/gitconfig $HOME/.gitconfig

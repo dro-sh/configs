@@ -1,4 +1,4 @@
-local golangCompaniesNames = "gitlab.com/zhazhazha1,gitlab.axarea.ru/main"
+-- local golangCompaniesNames = "gitlab.com/zhazhazha1,gitlab.axarea.ru/main"
 
 require("conform").setup {
   lsp_fallback = true,
@@ -11,11 +11,15 @@ require("conform").setup {
     javascript = { "prettier" },
     css = { "prettier" },
     html = { "prettier" },
+    markdown = { "prettier" },
 
-    -- TODO think about helm chart
     yaml = { "yamlfmt" },
 
     sh = { "shfmt" },
+
+    tf = { "terraform_fmt" },
+
+    proto = { "buf" },
 
     -- Use the "_" filetype to run formatters on filetypes that don't
     -- have other formatters configured.

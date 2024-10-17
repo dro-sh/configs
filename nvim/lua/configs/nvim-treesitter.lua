@@ -16,6 +16,8 @@ return {
     "markdown",
     "markdown_inline",
     "json",
+    "helm",
+    "terraform",
 
     -- git stuff
     "gitignore",
@@ -25,6 +27,9 @@ return {
 
     -- vim stuff
     "vim",
+
+    -- terraform stuff
+    "terraform",
 
     -- bluvota stuff
     "javascript",
