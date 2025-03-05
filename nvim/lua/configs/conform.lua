@@ -34,7 +34,7 @@ require("conform").setup {
         "-s",
         "default",
         "-s",
-        "prefix(gitlab.com/zhazhazha1,gitlab.axarea.ru/main)",
+        "prefix(gitlab.com/zhazhazha1,gitlab.axarea.ru/main,github.com/now-team)",
         "-s",
         "localmodule",
       },

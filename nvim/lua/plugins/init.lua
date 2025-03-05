@@ -89,8 +89,7 @@ return {
   -- using LLM for coding
   {
     -- fork from source while this PR is not merged https://github.com/Exafunction/codeium.nvim/pull/241
-    "dimfeld/codeium.nvim",
-    branch = "virtual-text",
+    "Exafunction/codeium.nvim",
     event = "BufEnter",
     cmd = "Codeium",
     dependencies = {

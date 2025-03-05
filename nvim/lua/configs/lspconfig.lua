@@ -5,6 +5,7 @@ require("nvchad.configs.lspconfig").defaults()
 local nvlsp = require "nvchad.configs.lspconfig"
 
 local lspconfig = require "lspconfig"
+-- List of supported servers: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 -- Default config for next servers
 local servers = {
   "html",
@@ -15,7 +16,7 @@ local servers = {
   "helm_ls",
   "terraformls",
   "marksman",
-  "bufls",
+  "buf_ls",
 }
 
 -- lsps with default config
